@@ -1,23 +1,9 @@
 from pathlib import Path
 import pandas as pd
 import streamlit as st
+from config import load_data
 
 st.set_page_config(page_title="Singapore Job Market Dashboard", layout="wide")
-
-
-DATA_PATH = Path(__file__).resolve().parent / "output3.csv"
-
-@st.cache_data
-def load_data():
-    return pd.read_csv(
-        DATA_PATH,
-        parse_dates=[
-            "New_Post_Date",
-            "Orig_Post_Date",
-            "Expiry_Date",
-        ],
-        sep=";"
-    )
 
 st.title("Singapore Job Market Dashboard")
 
@@ -27,13 +13,13 @@ pg = st.navigation(
         st.Page(
             "pages/overview.py",
             title="Overview",
-            icon=":material/dashboard:",
+            icon=":material/overview:",
             default=True,
         ),
         st.Page(
             "pages/data_handling.py", 
             title="Data Handling", 
-            icon=":material/menu_book:"
+            icon=":material/build:"
         ),
         st.Page(
             "pages/use_case_1.py", 
@@ -43,27 +29,27 @@ pg = st.navigation(
         st.Page(
             "pages/use_case_2.py", 
             title="Business Case 2", 
-            icon=":material/code:"
+            icon=":material/menu_book:"
         ),
         st.Page(
             "pages/use_case_3.py", 
             title="Business Case 3", 
-            icon=":material/code:"
+            icon=":material/menu_book:"
         ),
         st.Page(
             "pages/use_case_4.py", 
             title="Business Case 4", 
-            icon=":material/code:"
+            icon=":material/menu_book:"
         ),
 
         st.Page(
             "pages/use_case_5.py", 
             title="Business Case 5", 
-            icon=":material/code:"
+            icon=":material/menu_book:"
         ),
     ]
 )
-#pg.run()
+pg.run()
 
 
 with st.sidebar:
