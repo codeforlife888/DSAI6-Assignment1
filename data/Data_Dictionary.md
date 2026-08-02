@@ -22,7 +22,7 @@
 | salary_minimum / salary_maximum 	| int 	| Salary band. 	|  	| **Salary_Max / Salary_Min** 	| int 	|
 | **salary_type** 	| str 	| Almost all Monthly. 	| To drop column as all is monthly 	|  	| str 	|
 | status_jobStatus 	| str 	| Open, Closed, Re-open. 	|  	| **Job_Status** 	| str 	|
-| title 	| str 	| Free-text job title. 	| To change column name on next update  	| **Job_Title** 	| str 	|
+| title 	| str 	| Free-text job title. 	| To change column name on  next update  	| **Job_Title** 	| str 	|
 | average_salary 	| float 	| Pre-computed mean of min/max. 	|  	| **Avg_Salary** 	| float 	|
 
 
