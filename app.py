@@ -47,18 +47,18 @@ pg = st.navigation(
         ),
         st.Page(
             "pages/use_case_3.py", 
-            title="Business Case 2", 
+            title="Business Case 3", 
             icon=":material/code:"
         ),
         st.Page(
             "pages/use_case_4.py", 
-            title="Business Case 2", 
+            title="Business Case 4", 
             icon=":material/code:"
         ),
 
         st.Page(
             "pages/use_case_5.py", 
-            title="Business Case 2", 
+            title="Business Case 5", 
             icon=":material/code:"
         ),
     ]
