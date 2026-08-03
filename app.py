@@ -5,7 +5,7 @@ from config import load_data
 
 st.set_page_config(page_title="Singapore Job Market Dashboard", layout="wide")
 
-st.title("Singapore Job Market Dashboard")
+
 
 # Navigation
 pg = st.navigation(
