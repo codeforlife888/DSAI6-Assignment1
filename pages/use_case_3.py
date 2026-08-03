@@ -17,6 +17,8 @@
 import streamlit as st
 import pandas as pd
 import altair as alt
+import plotly.express as px
+from plotly.subplots import make_subplots
 from pathlib import Path
 
 DATA_PATH = "/home/kyo/DSAI6-Assignment1/output3.csv"
@@ -36,24 +38,104 @@ def load_data():
 
 df = load_data()
 
-st.title("Business Case 3: Salary Budget Benchmark")
-st.markdown(
-    """
-    ### Business objective
-    Help a startup plan its talent budget using industry salary benchmarks for headcount and specialist roles.
-    """
+# --- Use Case 3b: Salary benchmark for talent budgeting ---
+st.subheader("Salary Benchmark for Headcount Planning")
+
+data = df.dropna(subset=["Avg_Salary", "Category"])
+data = data[data["Avg_Salary"].between(500, 50000)]
+
+c1, c2, c3 = st.columns(3)
+category = c1.multiselect("Category", sorted(data["Category"].dropna().unique()))
+emp_type = c2.multiselect("Employment Type", sorted(data["Employment_Types"].dropna().unique()))
+years = c3.slider(
+    "Min Years Experience",
+    int(data["Min_Yrs_Experience"].min()),
+    int(data["Min_Yrs_Experience"].max()),
+    (int(data["Min_Yrs_Experience"].min()), int(data["Min_Yrs_Experience"].max())),
 )
 
-st.markdown(
-    """
-    **Dataset fields used**
-    - `Category`
-    - `Employment_Types`
-    - `Min_Yrs_Experience`
-    - `Avg_Salary`
-    - `Position_Level`
-    """
-)
+if category:
+    data = data[data["Category"].isin(category)]
+if emp_type:
+    data = data[data["Employment_Types"].isin(emp_type)]
+data = data[data["Min_Yrs_Experience"].between(years[0], years[1])]
+
+if data.empty:
+    st.info("No postings match these filters. Widen the experience range or clear a filter.")
+else:
+    k1, k2, k3 = st.columns(3)
+    k1.metric("Median Salary", f"${data['Avg_Salary'].median():,.0f}")
+    k2.metric("Min Salary", f"${data['Avg_Salary'].min():,.0f}")
+    k3.metric("Max Salary", f"${data['Avg_Salary'].max():,.0f}")
+
+    # Box plot by Category
+    fig1 = px.box(data, x="Category", y="Avg_Salary", color="Category",
+                  title="Salary Distribution by Category")
+    fig1.update_traces(boxmean=True)
+    fig1.update_layout(showlegend=False, xaxis_tickangle=-80)
+    st.plotly_chart(fig1, use_container_width=True)
+
+    # fig1 = px.box(data, y="Category", x="Avg_Salary", color="Category",
+    #               orientation="h", points=False,
+    #               title="Salary Distribution by Category")
+    # fig1.update_traces(boxmean=True)
+    # fig1.update_layout(showlegend=False, yaxis_title=None,
+    #                    height=max(500, 22 * data["Category"].nunique()))
+    # st.plotly_chart(fig1, use_container_width=True)
+
+    # Box plot by Role (top 10 most-posted titles)
+    top_roles = data["title"].value_counts().nlargest(10).index
+    fig2 = px.box(data[data["title"].isin(top_roles)],
+                  x="title", y="Avg_Salary", color="title",
+                  title="Salary Distribution by Role (Top 10 Roles)")
+    fig2.update_traces(boxmean=True)
+    fig2.update_layout(showlegend=False, xaxis_tickangle=-30)
+    st.plotly_chart(fig2, use_container_width=True)
+
+
+
+
+
+
+
+
+# st.title("Business Case 3: Salary Budget Benchmark")
+# st.markdown(
+#     """
+#     ### Business objective
+#     Help a startup plan its talent budget using industry salary benchmarks for headcount and specialist roles.
+#     """
+# )
+
+# st.markdown(
+#     """
+#     **Dataset fields used**
+#     - `Category`
+#     - `Employment_Types`
+#     - `Min_Yrs_Experience`
+#     - `Avg_Salary`
+#     - `Position_Level`
+#     """
+# )
+
+# filter_df = df.groupby("Category").agg({"Vacancies": "sum"}).reset_index()
+# # Create bar chart
+# fig = px.bar(
+#     filter_df,
+#     x="Category",   # categories on x-axis
+#     y="Vacancies",      # number of vacancies on y-axis
+#     title="Job Vacancies by Category",
+#     text="Vacancies"    # show vacancy numbers on bars
+# )
+# # Improve layout
+# fig.update_layout(
+#     xaxis_title="Job Category",
+#     yaxis_title="Number of Vacancies",
+#     template="plotly_white"
+# )
+# # Show the figure
+# #fig.show()
+# st.plotly_chart(fig)
 
 # Filters
 # categories = sorted(df["Category"].dropna().unique())
