@@ -20,9 +20,9 @@
 | positionLevels 	| str 	| Fresh/entry, Junior Executive, Executive, Senior Executive, Professional, Manager, Middle Management, Senior Management, Non-executive. 	|  	| **Position_Level** 	| str 	|
 | postedCompany_name 	| str 	| The poster (often a recruitment agency, not the hiring employer). 	|  	| **Company_Name** 	| str 	|
 | salary_minimum / salary_maximum 	| int 	| Salary band. 	|  	| **Salary_Max / Salary_Min** 	| int 	|
-| **salary_type** 	| str 	| Almost all Monthly. 	| To drop column as all is monthly 	|  	| str 	|
+| **salary_type** 	| str 	| Almost all Monthly. 	| drop column as it has only one unique value 	|  	| str 	|
 | status_jobStatus 	| str 	| Open, Closed, Re-open. 	|  	| **Job_Status** 	| str 	|
-| title 	| str 	| Free-text job title. 	| To change column name on next update  	| **Job_Title** 	| str 	|
+| title 	| str 	| Free-text job title. 	|  	| **Job_Title** 	| str 	|
 | average_salary 	| float 	| Pre-computed mean of min/max. 	|  	| **Avg_Salary** 	| float 	|
 
 
