@@ -83,6 +83,7 @@ else:
     fig2.update_layout(showlegend=False, xaxis_tickangle=-30)
     st.plotly_chart(fig2, use_container_width=True)
 
+
 # st.title("Business Case 3: Salary Budget Benchmark")
 # st.markdown(
 #     """
