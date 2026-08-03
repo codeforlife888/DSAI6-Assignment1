@@ -21,6 +21,7 @@ import plotly.express as px
 from plotly.subplots import make_subplots
 from pathlib import Path
 
+
 DATA_PATH = "/home/kyo/DSAI6-Assignment1/output3.csv"
 
 @st.cache_data
