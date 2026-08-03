@@ -75,15 +75,6 @@ else:
     fig1.update_layout(showlegend=False, xaxis_tickangle=-80)
     st.plotly_chart(fig1, use_container_width=True)
 
-    # fig1 = px.box(data, y="Category", x="Avg_Salary", color="Category",
-    #               orientation="h", points=False,
-    #               title="Salary Distribution by Category")
-    # fig1.update_traces(boxmean=True)
-    # fig1.update_layout(showlegend=False, yaxis_title=None,
-    #                    height=max(500, 22 * data["Category"].nunique()))
-    # st.plotly_chart(fig1, use_container_width=True)
-
-    # Box plot by Role (top 10 most-posted titles)
     top_roles = data["title"].value_counts().nlargest(10).index
     fig2 = px.box(data[data["title"].isin(top_roles)],
                   x="title", y="Avg_Salary", color="title",
