@@ -9,7 +9,7 @@ st.markdown(
     "**Business Case 1: Top roles by vacancies**")
 
 st.markdown(
-    "Which are the top 10 categories especially IT?")
+    "Which are the top 10 categories?")
 
 df = load_data()
 filter_df = df.groupby("Category").agg({"Vacancies": "sum"}).reset_index()
