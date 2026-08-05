@@ -13,10 +13,10 @@ st.markdown(
 
 df = load_data()
 filter_df = df.groupby("Category").agg({"Vacancies": "sum"}).reset_index()
-
+order_df = filter_df.sort_values(by="Vacancies", ascending=False).head(15)
 # Create bar chart
 fig = px.bar(
-    filter_df,
+    order_df,
     x="Category",   # categories on x-axis
     y="Vacancies",      # number of vacancies on y-axis
     title="Job Vacancies by Category",
