@@ -20,10 +20,9 @@ import altair as alt
 import plotly.express as px
 from plotly.subplots import make_subplots
 from pathlib import Path
-from config import load_data
 
 
-# DATA_PATH = "/home/kyo/DSAI6-Assignment1/output3.csv"
+DATA_PATH = "/home/kyo/DSAI6-Assignment1/output3.csv"
 
 # @st.cache_data
 # def load_data():
