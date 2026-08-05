@@ -52,10 +52,10 @@ pg = st.navigation(
 pg.run()
 
 
-with st.sidebar:
-    st.header("Filters")
-    df = load_data()
-    category_options = sorted(df["Category"].dropna().unique())
-    selected_categories = st.multiselect(
-        "Category", category_options, default=category_options
-    )
+# with st.sidebar:
+#     st.header("Filters")
+#     df = load_data()
+#     category_options = sorted(df["Category"].dropna().unique())
+#     selected_categories = st.multiselect(
+#         "Category", category_options, default=category_options
+#     )
