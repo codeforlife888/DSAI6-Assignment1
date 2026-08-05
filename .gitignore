@@ -6,3 +6,4 @@ notebooks/EDA2.ipynb
 notebooks/EDA3.ipynb
 data/output3.csv
 __pycache__/
+data
