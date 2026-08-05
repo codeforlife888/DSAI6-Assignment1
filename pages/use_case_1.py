@@ -5,8 +5,9 @@ import plotly.express as px
 from plotly.subplots import make_subplots
 from config  import load_data
 
-st.markdown(
-    "**Business Case 1: Top roles by vacancies**")
+
+st.title(
+    ":material/work: Business Case 1: Top roles by vacancies")
 
 st.markdown(
     "Which are the top 10 categories?")
