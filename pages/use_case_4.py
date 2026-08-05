@@ -8,7 +8,7 @@ df = load_data()
 st.title(":material/attach_money: Higher salary = :material/diversity_3: more job applicants?")
 st.write("Business Objective: Should we increase salaries to attract more candidates?")
 
-#created dataframe filter by Category = Information technology, then group by all title under Category = Information Technology. Then Avg_Salary and Total_Applications for each unique title.
+#created dataframe filter by Category = Information technology, then group by all title under Category = Information Technology. Finally Avg_Salary and Total_Applications for each unique title.
 df_filtered = (
     df[df['Category'] == 'Information Technology']
     .groupby('title', as_index=False)
@@ -43,4 +43,10 @@ fig = px.scatter(
     title="Overview : Average Salary vs Total Applications"
 )
 
-st.plotly_chart(fig, use_container_width=True)
+fig.update_layout(
+    xaxis_title="Average Monthly Salary ($)",
+    yaxis_title="Total # of Applications",
+
+)
+
+st.plotly_chart(fig, width='stretch')
