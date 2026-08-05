@@ -71,9 +71,12 @@ elif abs(correlation) >= 0.2:
 else:
     strength = "Very Weak"
 
-st.metric("Pearson Correlation", f"{correlation:.3f}")
+with st.container(horizontal=True,border=True):
+    st.metric("Pearson Correlation", f"{correlation:.3f}")
+    st.metric("**Relationship**", f"{strength}")
 
-st.write(f"**Relationship:** {strength}")
-
-st.title("Business Insight")
-st.write("There is a weak negative correlation (-0.214) between salary and the number of applications, suggesting that increasing salary alone is unlikely to significantly increase applicant volume.")
+st.info(
+    " **Business Insight** \n"" "
+    "\nThere is a weak negative correlation (-0.214) between salary and the number of applications, suggesting that increasing salary alone is unlikely to significantly increase applicant volume.",
+    icon=":material/star_shine:",
+)
