@@ -4,4 +4,5 @@ output4.csv
 notebooks/EDA1.ipynb
 notebooks/EDA2.ipynb
 notebooks/EDA3.ipynb
-config.py
+data/output3.csv
+__pycache__/
