@@ -20,24 +20,91 @@ import altair as alt
 import plotly.express as px
 from plotly.subplots import make_subplots
 from pathlib import Path
+from config import load_data
 
 
-DATA_PATH = "/home/kyo/DSAI6-Assignment1/output3.csv"
+# DATA_PATH = "/home/kyo/DSAI6-Assignment1/output3.csv"
 
-@st.cache_data
-def load_data():
-    df = pd.read_csv(
-        DATA_PATH,
-        sep=";",
-        parse_dates=["Expiry_Date", "New_Post_Date", "Orig_Post_Date"],
-        dayfirst=True,
-        encoding="utf-8",
-    )
-    df["Avg_Salary"] = pd.to_numeric(df["Avg_Salary"], errors="coerce")
-    df["Min_Yrs_Experience"] = pd.to_numeric(df["Min_Yrs_Experience"], errors="coerce")
-    return df
+# @st.cache_data
+# def load_data():
+#     df = pd.read_csv(
+#         DATA_PATH,
+#         sep=";",
+#         parse_dates=["Expiry_Date", "New_Post_Date", "Orig_Post_Date"],
+#         dayfirst=True,
+#         encoding="utf-8",
+#     )
+#     df["Avg_Salary"] = pd.to_numeric(df["Avg_Salary"], errors="coerce")
+#     df["Min_Yrs_Experience"] = pd.to_numeric(df["Min_Yrs_Experience"], errors="coerce")
+#     return df
 
 df = load_data()
+
+# data = df.dropna(subset=["Avg_Salary", "Category"])
+# data = data[data["Avg_Salary"].between(500, 50000)]
+
+# df.describe()
+
+# # ---------- Header ----------
+# st.title("Use Case 3 — Talent Budget Planning")
+# st.write(
+#     "A startup planning headcount needs to know what the market pays. "
+#     "The charts below show the salary spread across the whole market; "
+#     "use the dropdowns to pull the exact figures for the roles you plan to hire."
+# )
+
+# # ---------- Market overview ----------
+# fig1 = px.box(data, y="Category", x="Avg_Salary", color="Category",
+#               orientation="h", points=False,
+#               title="Salary Distribution by Category")
+# fig1.update_traces(boxmean=True)
+# fig1.update_layout(showlegend=False, yaxis_title=None,
+#                    xaxis_title="Average Salary (SGD)",
+#                    height=max(500, 22 * data["Category"].nunique()))
+# st.plotly_chart(fig1, use_container_width=True)
+
+# top_roles = data[Job_Title].value_counts().nlargest(10).index
+# fig2 = px.box(data[data[Job_Title].isin(top_roles)], y=Job_Title, x="Avg_Salary", color=Job_Title,
+#               orientation="h", points=False,
+#               title="Salary Distribution by Role (Top 10 Most-Posted Roles)")
+# fig2.update_traces(boxmean=True)
+# fig2.update_layout(showlegend=False, yaxis_title=None,
+#                    xaxis_title="Average Salary (SGD)", height=500)
+# st.plotly_chart(fig2, use_container_width=True)
+
+
+# # ---------- Budget lookup ----------
+# st.markdown("### Salary Statistics by Selection")
+
+# c1, c2, c3 = st.columns(3)
+
+# category = c1.selectbox("Category", ["All"] + sorted(data["Category"].dropna().unique()))
+# pool = data if category == "All" else data[data["Category"] == category]
+
+# role = c2.selectbox("Role", ["All"] + sorted(pool["Job_Title"].dropna().unique()))
+# pool = pool if role == "All" else pool[pool["Job_Title"] == role]
+
+# years = c3.selectbox("Min Years Experience",
+#                      ["All"] + sorted(pool["minimumYearsExperience"].dropna().unique()))
+# pool = pool if years == "All" else pool[pool["minimumYearsExperience"] == years]
+
+# if pool.empty:
+#     st.info("No postings match this selection. Try a broader filter.")
+# else:
+#     s = pool["Avg_Salary"]
+#     k1, k2, k3, k4, k5 = st.columns(5)
+#     k1.metric("Min", f"${s.min():,.0f}")
+#     k2.metric("25th Pct", f"${s.quantile(0.25):,.0f}")
+#     k3.metric("Median", f"${s.median():,.0f}")
+#     k4.metric("75th Pct", f"${s.quantile(0.75):,.0f}")
+#     k5.metric("Max", f"${s.max():,.0f}")
+
+#     st.caption(f"Based on {len(pool):,} job postings.")
+#     if len(pool) < 30:
+#         st.warning(
+#             f"Only {len(pool)} postings in this slice — treat these figures as "
+#             "indicative rather than a benchmark."
+#         )
 
 # --- Use Case 3b: Salary benchmark for talent budgeting ---
 st.subheader("Salary Benchmark for Headcount Planning")
@@ -73,16 +140,55 @@ else:
     fig1 = px.box(data, x="Category", y="Avg_Salary", color="Category",
                   title="Salary Distribution by Category")
     fig1.update_traces(boxmean=True)
-    fig1.update_layout(showlegend=False, xaxis_tickangle=-80)
+    fig1.update_layout(showlegend=False, xaxis_tickangle=-90)
     st.plotly_chart(fig1, use_container_width=True)
 
-    top_roles = data["title"].value_counts().nlargest(10).index
+    top_roles = data["title"].value_counts().nlargest(30).index
     fig2 = px.box(data[data["title"].isin(top_roles)],
                   x="title", y="Avg_Salary", color="title",
                   title="Salary Distribution by Role (Top 10 Roles)")
     fig2.update_traces(boxmean=True)
-    fig2.update_layout(showlegend=False, xaxis_tickangle=-30)
+    fig2.update_layout(showlegend=False, xaxis_tickangle=-90)
     st.plotly_chart(fig2, use_container_width=True)
+
+
+# ---------- Budget lookup ----------
+st.markdown("### Salary Statistics by Selection")
+
+c1, c2, c3 = st.columns(3)
+
+category = c1.selectbox("Category", ["All"] + sorted(data["Category"].dropna().unique()))
+pool = data if category == "All" else data[data["Category"] == category]
+
+
+years = c2.selectbox("Min Years Experience",
+                     ["All"] + sorted(pool["Min_Yrs_Experience"].dropna().unique()))
+pool = pool if years == "All" else pool[pool["Min_Yrs_Experience"] == years]
+
+role = c3.selectbox("Role", ["All"] + sorted(pool["title"].dropna().unique()))
+pool = pool if role == "All" else pool[pool["title"] == role]
+
+if pool.empty:
+    st.info("No postings match this selection. Try a broader filter.")
+else:
+    s = pool["Avg_Salary"]
+    k1, k2, k3, k4, k5 = st.columns(5)
+    k1.metric("Min", f"${s.min():,.0f}")
+    k2.metric("25th Pct", f"${s.quantile(0.25):,.0f}")
+    k3.metric("Median", f"${s.median():,.0f}")
+    k4.metric("75th Pct", f"${s.quantile(0.75):,.0f}")
+    k5.metric("Max", f"${s.max():,.0f}")
+
+    st.caption(f"Based on {len(pool):,} job postings.")
+    if len(pool) < 30:
+        st.warning(
+            f"Only {len(pool)} postings in this slice — treat these figures as "
+            "indicative rather than a benchmark."
+        )
+
+
+
+
 
 
 # st.title("Business Case 3: Salary Budget Benchmark")
