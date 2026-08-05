@@ -38,7 +38,7 @@ fig = px.scatter(
     x="Avg_Salary",
     y="Total_Applications",
     trendline="ols",
-    log_y=True,  # Log scale for y-axis
+    #log_y=True,  # Log scale for y-axis
     hover_name="Job_Group",  # Shows title prominently
     hover_data={
         "Avg_Salary": ":,.0f",
