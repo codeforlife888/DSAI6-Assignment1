@@ -15,3 +15,14 @@ def load_data():
         ],
         sep=";"
     )
+
+@st.cache_data
+def load_salary_data():
+    df = load_data()
+
+    return (
+        df.loc[
+            df["Avg_Salary"].between(500, 50000)
+            & df["Category"].notna()
+        ].copy()
+    )
