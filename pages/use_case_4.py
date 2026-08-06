@@ -53,6 +53,8 @@ fig.update_layout(
 
 )
 
+fig.update_traces(marker=dict(size=15))
+
 st.plotly_chart(fig, width='stretch')
 
 #calculate Pearson correlation coefficient between Avg_Salary and Total_Applications
