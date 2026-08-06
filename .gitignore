@@ -1,3 +1,8 @@
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+*.csv
 SGJobData.csv
 output3.csv
 output4.csv
@@ -8,3 +13,5 @@ data/output3.csv
 __pycache__/
 __pycache__/config.cpython-314.pyc
 data
+output3 (original).csv
+output3(original).csv
