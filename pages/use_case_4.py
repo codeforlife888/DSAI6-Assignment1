@@ -82,3 +82,19 @@ st.info(
     "\nThere is a weak negative correlation (-0.214) between salary and the number of applications, suggesting that increasing salary alone is unlikely to significantly increase applicant volume.",
     icon=":material/star_shine:",
 )
+st.divider()
+st.subheader("Let's explore why higher salaries may not be attracting more applicants")
+st.write(
+    "* Job seekers consider many factors besides salary.\n"
+    "* Company reputation may have a larger influence.\n"
+    "* Senior positions naturally pay more but attract fewer qualified applicants.\n"
+    "* Some niche technical roles have high salaries but limited talent pools.\n"
+    "* Popular entry-level roles may receive many applications despite lower salaries."
+)
+
+st.success(
+    " **Business Recommendation** \n"
+
+    "\nInstead of relying solely on higher salaries, HR should improve job attractiveness through employer branding, flexible work arrangements, career development opportunities, and well-written job descriptions. Salary remains important but should be part of a broader recruitment strategy.",
+    icon=":material/done_all:",
+)
