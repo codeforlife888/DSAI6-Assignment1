@@ -17,11 +17,6 @@ pg = st.navigation(
             default=True,
         ),
         st.Page(
-            "pages/data_handling.py", 
-            title="Data Handling", 
-            icon=":material/build:"
-        ),
-        st.Page(
             "pages/use_case_1.py", 
             title="Business Case 1", 
             icon=":material/menu_book:"
