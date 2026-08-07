@@ -38,7 +38,7 @@ data = data[data["Min_Yrs_Experience"] <= 20]  # Filter out extreme outliers in 
 
 c1, c2, c3 = st.columns(3)
 # c1 - Count the number of rows in job postings after filtering
-c1.metric("Total Job Postings", f"{len(data):,}")
+c1.metric("Total Job Postings", f"{data['Job_Post_ID'].nunique():,}")
 # c2 - Count the number of unique categories in job postings after filtering
 c2.metric("Total Categories", f"{data['Category'].nunique():,}")
 
