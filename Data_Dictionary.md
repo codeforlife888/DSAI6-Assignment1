@@ -23,7 +23,7 @@
 | **salary_type** 	| str 	| Almost all Monthly. 	| drop column as it has only one unique value 	|  	|   	|
 | status_jobStatus 	| str 	| Open, Closed, Re-open. 	|  	| **Job_Status** 	| VARCHAR	|
 | title 	| str 	| Free-text job title. 	|  	| **Job_Title** 	| VARCHAR 	|
-| average_salary 	| float 	| Pre-computed mean of min/max. 	|  	| 	|  	|
+| average_salary 	| float 	| Pre-computed mean of min/max. 	| drop column as it is a redundant calculated field	| 	|  	|
 
 
 ----
