@@ -5,7 +5,7 @@
 | **Original Data** 	|  	|  	| **Cleaned Data** 	|  	|  	|
 |---	|---	|---	|---	|---	|---	|
 | **Column** 	| **Type** 	| **Notes** 	| **Actions** 	| Column 	| **Type** 	|
-| **categories** 	| str (JSON array) 	| e.g. [{"id":21,"category":"Information Technology"}] — a job can belong to multiple categories. You will need to parse this. 	| Converted to "category" after exploding the JSON array  	| **Category** 	| str 	|
+| **categories** 	| str (JSON array) 	| e.g. [{"id":21,"category":"Information Technology"}] — a job can belong to multiple categories. You will need to parse this. 	| Converted to "category" after exploding the JSON array  	| **Category** 	| VARCHAR 	|
 | employmentTypes 	| str 	| Permanent, Full Time, Contract, Part Time, Temporary, Internship/Attachment, Freelance, Flexi-work. 	|  	| **Employment_Type** 	| VARCHAR 	|
 | metadata_expiryDate 	| date 	| When the posting expires. 	|  	| **Expiry_Date** 	| date 	|
 | metadata_isPostedOnBehalf 	| bool 	| True if a recruiter posted on behalf of the hiring company. 	|  	| **Posted_On_Behalf** 	| bool 	|
@@ -20,10 +20,10 @@
 | positionLevels 	| str 	| Fresh/entry, Junior Executive, Executive, Senior Executive, Professional, Manager, Middle Management, Senior Management, Non-executive. 	|  	| **Position_Level** 	| str 	|
 | postedCompany_name 	| str 	| The poster (often a recruitment agency, not the hiring employer). 	|  	| **Company_Name** 	| str 	|
 | salary_minimum / salary_maximum 	| int 	| Salary band. 	|  	| **Salary_Max / Salary_Min** 	| int 	|
-| **salary_type** 	| str 	| Almost all Monthly. 	| drop column as it has only one unique value 	|  	| str 	|
-| status_jobStatus 	| str 	| Open, Closed, Re-open. 	|  	| **Job_Status** 	| str 	|
-| title 	| str 	| Free-text job title. 	|  	| **Job_Title** 	| str 	|
-| average_salary 	| float 	| Pre-computed mean of min/max. 	|  	| **Avg_Salary** 	| float 	|
+| **salary_type** 	| str 	| Almost all Monthly. 	| drop column as it has only one unique value 	|  	| s  	|
+| status_jobStatus 	| str 	| Open, Closed, Re-open. 	|  	| **Job_Status** 	| VARCHAR	|
+| title 	| str 	| Free-text job title. 	|  	| **Job_Title** 	| VARCHAR 	|
+| average_salary 	| float 	| Pre-computed mean of min/max. 	|  	| **Avg_Salary** 	| INTEGER 	|
 
 
 ----
