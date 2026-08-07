@@ -1,5 +1,5 @@
 ## 2. Data Handling & Process
-Summanry:
+Summary:
 - Cleaned a dataset with 1.8 million rows and 22 columns.
 - Compared Python/Pandas and SQL (DuckDB) for data cleaning in VS Code using Jupyter Notebook.
 - Python/Pandas required more execution time and memory, while SQL with DuckDB processed the data much faster and execute queries directly on the data stored on hard drive
@@ -20,19 +20,3 @@ Overall: SQL with DuckDB provided better execution speed, memory efficiency, and
 - **EDA findings:** Salary data contained strong outliers, and job-title variation made role-level comparison unreliable until titles were grouped. The analysis also found only a weak relationship between average salary and total applications, indicating that salary alone does not explain applicant interest. These findings led to the use of outlier filtering, job grouping, hover details, and drill-down charts.
 
 ---
-
-## 3. Dashboard / App
-
-Describe and demonstrate the solution, including:
-
-- **Solution type:** The solution is a multipage interactive dashboard built with Streamlit. Pandas prepares the data, and Plotly produces the visualisations.
-- **Navigation:** The application is divided into an overview, data-handling information, and individual use-case pages. This allows users to move from high-level market information to a focused business question.
-- **Overview view:** The overview presents important measures such as job-posting volume, vacancies, applications, common job categories, and salary ranges. It gives hiring managers a quick summary of the Singapore employment market before they explore IT-specific findings.
-- **Salary and applicant view:** A scatter plot compares average salary with total applications for grouped IT roles. Job-group names are included in the tooltips, and outliers are filtered to keep the chart readable. A correlation measure and trendline help users interpret the overall relationship.
-- **Insight from salary and applications:** The observed correlation is weak. Therefore, increasing salary alone may not generate a proportionate increase in applications. Job type, required skills, experience level, employer reputation, and employment conditions may also affect applicant interest.
-- **Experience-level view:** A horizontal floating-bar or dumbbell-style chart compares the average minimum and maximum salaries for Junior, Mid-Level, and Senior IT positions. The horizontal salary axis makes the numerical ranges easier to compare.
-- **Role drill-down:** Selecting an experience level reveals salary ranges for the job groups within that level. The summary and drill-down charts can be displayed side by side, allowing users to compare the broad experience category with its underlying roles.
-- **Interactivity:** The dashboard uses filters, Plotly hover tooltips, selection-based drill-downs, and chart-specific Streamlit keys. These features let users explore relevant subsets without displaying all 1.77 million records at once.
-- **Performance choices:** The dataset is cached, filtering is performed before expensive transformations, only required columns are selected, and charts use aggregated data rather than raw records. These choices reduce repeated processing and improve page-loading speed.
-- **Visual design:** Clear titles and business objectives are placed above each visual. Charts use readable labels, consistent salary formatting, horizontal axes where long role names are present, and restrained colours so comparisons remain easy to understand.
-- **Business value:** The overview identifies the scale and structure of the market; the salary-versus-applications analysis prevents the startup from assuming that pay is the only attraction factor; and the experience drill-down supports a realistic hiring mix and salary budget for the initial IT team.
