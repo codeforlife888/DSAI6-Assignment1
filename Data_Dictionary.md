@@ -6,7 +6,7 @@
 |---	|---	|---	|---	|---	|---	|
 | **Column** 	| **Type** 	| **Notes** 	| **Actions** 	| Column 	| **Type** 	|
 | **categories** 	| str (JSON array) 	| e.g. [{"id":21,"category":"Information Technology"}] — a job can belong to multiple categories. You will need to parse this. 	| Converted to "category" after exploding the JSON array  	| **Category** 	| str 	|
-| employmentTypes 	| str 	| Permanent, Full Time, Contract, Part Time, Temporary, Internship/Attachment, Freelance, Flexi-work. 	|  	| **Employment_Type** 	| str 	|
+| employmentTypes 	| str 	| Permanent, Full Time, Contract, Part Time, Temporary, Internship/Attachment, Freelance, Flexi-work. 	|  	| **Employment_Type** 	| VARCHAR 	|
 | metadata_expiryDate 	| date 	| When the posting expires. 	|  	| **Expiry_Date** 	| date 	|
 | metadata_isPostedOnBehalf 	| bool 	| True if a recruiter posted on behalf of the hiring company. 	|  	| **Posted_On_Behalf** 	| bool 	|
 | **metadata_jobPostId** 	| str 	| Unique ID, e.g. MCF-2023-0252866. 	| Unique ID, Removed null	| **Job_Post_ID** 	| str 	|
