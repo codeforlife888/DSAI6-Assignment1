@@ -1,6 +1,6 @@
 ## 2. Data Handling & Process
 Summary:
-- Cleaned a dataset of 280MV CSV file.
+- Cleaned a dataset of 280MB CSV file.
 - Compared Python/Pandas and SQL (DuckDB) for data cleaning in VS Code using Jupyter Notebook.
 - Python/Pandas required more execution time and memory, while SQL with DuckDB processed the data much faster and execute queries directly on the data stored on hard drive
 - The cleaned dataset saved as a CSV file was much larger than the same data stored in a DuckDB database file.  
